@@ -1,8 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { calcularSaqueAniversario } from '../utils/fgts';
+import { useCalculoFgts } from '../context/CalculoFgtsContext';
 
 function FGTSForm() {
   const navigate = useNavigate();
+  const { setCalculoFgts } = useCalculoFgts(); 
+
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
   const [saldo, setSaldo] = useState('');
@@ -10,6 +14,18 @@ function FGTSForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const saldoNumber = parseFloat(saldo);
+    const saque = calcularSaqueAniversario(saldoNumber);
+
+    setCalculoFgts({
+        nome,
+        telefone,
+        saldo: saldoNumber,
+        mes,
+        saque
+    });
+
     navigate('/resultado');
   };
 
