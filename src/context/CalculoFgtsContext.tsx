@@ -27,8 +27,9 @@ export function CalculoFgtsProvider({ children }: { children: ReactNode }) {
 
 export function useCalculoFgts() {
   const context = useContext(CalculoFgtsContext);
+
   if (!context) {
-    throw new Error('useCalculoFgts deve ser usado dentro de um CalculoFgtsProvider');
+    throw new Error('useSimulacao deve ser usado dentro de um SimulacaoProvider');
   }
   return context;
 }

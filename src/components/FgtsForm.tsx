@@ -32,22 +32,22 @@ function FGTSForm() {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Nome:</label><br />
+        <label>Qual seu nome?</label><br />
         <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
       </div>
 
       <div>
-        <label>Telefone:</label><br />
+        <label>Qual seu telefone?</label><br />
         <input type="tel" value={telefone} onChange={(e) => setTelefone(e.target.value)} required />
       </div>
 
       <div>
-        <label>Saldo do FGTS:</label><br />
+        <label>Qual seu saldo?</label><br />
         <input type="number" value={saldo} onChange={(e) => setSaldo(e.target.value)} required />
       </div>
 
       <div>
-        <label>Mês de aniversário:</label><br />
+        <label>Qual seu mês de aniversário?</label><br />
         <select value={mes} onChange={(e) => setMes(e.target.value)} required>
           <option value="">Selecione</option>
           {[
@@ -61,7 +61,7 @@ function FGTSForm() {
       </div>
 
       <br />
-      <button type="submit">Simular</button>
+      <button type="submit">Ver Proposta</button>
     </form>
   );
 }
