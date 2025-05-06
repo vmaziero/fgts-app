@@ -1,7 +1,9 @@
-import { HTMLFormMethod, useNavigate } from 'react-router-dom';
-import { FormEventHandler, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { calcularSaqueAniversario } from '../../utils/fgts';
 import { useCalculoFgts } from '../../context/CalculoFgtsContext';
+import { useMask } from "../../hooks/useMask";
+import { formatCurrency } from "../../utils/formatters";
 import { validaTelefone } from '../../services/validaTelefone';
 import {
   Form,
@@ -10,7 +12,6 @@ import {
   ButtonSubmit,
   ButtonWrapper
 } from './FgtsForm.styles';
-import InputMask from '../inputMask/InputMask';
 
 function FGTSForm() {
   const navigate = useNavigate();
@@ -18,8 +19,13 @@ function FGTSForm() {
 
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [currency, setCurrency] = useState('');
   const [mes, setMes] = useState('');
+
+  const { 
+    value:currency, 
+    raw: currencyRaw, 
+    onChange: setCurrency 
+  } = useMask(formatCurrency);
 
   const meses = [
     'Janeiro', 
@@ -38,20 +44,10 @@ function FGTSForm() {
     <option key={idx} value={mes}>{mes}</option>
   ));
 
-  // const [currency, setCurrency] = useState<string>("");
-
-  const handleCurrencyChange: (maskedValue: string) => void = (maskedValue) => {
-    setCurrency(maskedValue);
-  };
-
-  const currencyPrefix = "R$ ";
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    let currencyString = (currency.replace(/\D/g, ""));
-    currencyString = (currencyString.replace(/(\d)(\d{2})$/, "$1.$2"));
-    const currencyNumber = parseFloat(currencyString);
+    const currencyNumber = parseFloat(currencyRaw.replace(/(\d)(\d{2})$/, "$1.$2"));
 
     const internationalNumber = "+55" + telefone.replace(/\D/g, '');
 
@@ -91,11 +87,10 @@ function FGTSForm() {
       <FormRow>
         <FormGroup>
           <label>Qual seu saldo?</label><br />
-          <InputMask
-            prefix={currencyPrefix}
-            mask="currency"
+          <input
+            type="text"
             value={currency}
-            onValueChange={handleCurrencyChange}
+            onChange={setCurrency}
             placeholder="ex.: R$ 5.000,00"
           />
         </FormGroup>
