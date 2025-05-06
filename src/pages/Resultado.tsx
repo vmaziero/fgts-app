@@ -1,11 +1,20 @@
+import { useEffect } from "react";
 import { useCalculoFgts } from "../context/CalculoFgtsContext";
+import { useNavigate } from "react-router-dom";
 
 function Resultado() {
   const { calculoFgts } = useCalculoFgts();
+  const navigate = useNavigate();
 
-  if(!calculoFgts) {
-    return <p>Preencha o formulário com as informações solicitadas para visualizar o valor que poderá ser retirado.</p>
-  }
+  useEffect(() => {
+    if(!calculoFgts) {
+      navigate('/');
+    }
+  }, [calculoFgts]); 
+
+    if(!calculoFgts) {
+      return <p>Redirecionando...</p>
+    }
 
     return (
       <div style={{ padding: '2rem' }}>
@@ -18,5 +27,6 @@ function Resultado() {
       </div>
     );
   }
+
   
   export default Resultado;

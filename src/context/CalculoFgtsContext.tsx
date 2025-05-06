@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type CalculoFgts = {
   nome: string;
@@ -17,6 +18,19 @@ const CalculoFgtsContext = createContext<CalculoFgtsContextType | undefined>(und
 
 export function CalculoFgtsProvider({ children }: { children: ReactNode }) {
   const [calculoFgts, setCalculoFgts] = useState<CalculoFgts | null>(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!children) {
+      navigate('./');
+    }
+  }, [children, navigate]);
+
+  if (!children) {
+    return null;
+  }
+  
 
   return (
     <CalculoFgtsContext.Provider value={{ calculoFgts, setCalculoFgts }}>
