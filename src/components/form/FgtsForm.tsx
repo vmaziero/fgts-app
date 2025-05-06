@@ -10,6 +10,7 @@ import {
   ButtonSubmit,
   ButtonWrapper
 } from './FgtsForm.styles';
+import InputMask from '../inputMask/InputMask';
 
 function FGTSForm() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function FGTSForm() {
 
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [saldo, setSaldo] = useState('');
+  const [currency, setCurrency] = useState('');
   const [mes, setMes] = useState('');
 
   const meses = [
@@ -37,18 +38,20 @@ function FGTSForm() {
     <option key={idx} value={mes}>{mes}</option>
   ));
 
-  const handleCurrencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSaldo(e.target.value);
+  // const [currency, setCurrency] = useState<string>("");
+
+  const handleCurrencyChange: (maskedValue: string) => void = (maskedValue) => {
+    setCurrency(maskedValue);
   };
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTelefone(e.target.value);
-  };
+  const currencyPrefix = "R$ ";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const saldoNumber = parseFloat(saldo);
+    let currencyString = (currency.replace(/\D/g, ""));
+    currencyString = (currencyString.replace(/(\d)(\d{2})$/, "$1.$2"));
+    const currencyNumber = parseFloat(currencyString);
 
     const internationalNumber = "+55" + telefone.replace(/\D/g, '');
 
@@ -58,12 +61,12 @@ function FGTSForm() {
       return;
     }
 
-    const saque = calcularSaqueAniversario(saldoNumber);
+    const saque = calcularSaqueAniversario(currencyNumber);
 
     setCalculoFgts({
         nome,
         telefone,
-        saldo: saldoNumber,
+        saldo: currencyNumber,
         mes,
         saque
     });
@@ -81,14 +84,20 @@ function FGTSForm() {
 
         <FormGroup>
           <label>Qual seu telefone?</label><br />
-          <input type="tel" value={telefone} onChange={handlePhoneChange} required />
+          <input type="tel" value={telefone} onChange={(e) => setTelefone(e.target.value)} required />
         </FormGroup>
       </FormRow>
 
       <FormRow>
         <FormGroup>
           <label>Qual seu saldo?</label><br />
-          <input value={saldo} onChange={handleCurrencyChange} required />
+          <InputMask
+            prefix={currencyPrefix}
+            mask="currency"
+            value={currency}
+            onValueChange={handleCurrencyChange}
+            placeholder="ex.: R$ 5.000,00"
+          />
         </FormGroup>
 
         <FormGroup>
