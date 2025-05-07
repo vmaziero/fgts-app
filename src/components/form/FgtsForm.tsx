@@ -7,7 +7,7 @@ import { formatCurrency } from "../../utils/formatters";
 import { validaTelefone } from '../../services/validaTelefone';
 import {
   Form,
-  FormRow,
+  Row,
   FormGroup,
   ButtonSubmit,
   ButtonWrapper
@@ -72,19 +72,29 @@ function FGTSForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormRow>
+      <Row>
         <FormGroup>
           <label>Qual seu nome?</label><br />
-          <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
+          <input 
+            type="text" 
+            value={nome} 
+            onChange={(e) => setNome(e.target.value)} 
+            placeholder="ex.: Guilherme Neves"
+            required />
         </FormGroup>
 
         <FormGroup>
           <label>Qual seu telefone?</label><br />
-          <input type="tel" value={telefone} onChange={(e) => setTelefone(e.target.value)} required />
+          <input 
+            type="tel" 
+            value={telefone} 
+            onChange={(e) => setTelefone(e.target.value)} 
+            placeholder="ex.: (21) 98765-9087"
+            required />
         </FormGroup>
-      </FormRow>
+      </Row>
 
-      <FormRow>
+      <Row>
         <FormGroup>
           <label>Qual seu saldo?</label><br />
           <input
@@ -102,7 +112,7 @@ function FGTSForm() {
             {meses}
           </select>
         </FormGroup>
-      </FormRow>
+      </Row>
 
       <ButtonWrapper>
         <ButtonSubmit type="submit">Ver Proposta</ButtonSubmit>

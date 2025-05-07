@@ -5,7 +5,7 @@ export const Form = styled.form`
   margin: 0 auto;
 `;
 
-export const FormRow = styled.div`
+export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -20,7 +20,6 @@ export const FormGroup = styled.div`
   }
 
   label {
-    display: block;
     font-weight: bold;
     color: #404040;
   }

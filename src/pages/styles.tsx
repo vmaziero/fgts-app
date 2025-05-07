@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import logo from '../assets/logo.svg';
 
-export const FormBox = styled.div`
+export const Box = styled.div`
   background: #fff;
   padding: 2rem;
   color: #000;
@@ -40,3 +41,66 @@ export const CopyColumn2 = styled.div`
     flex: 1 1 35%;
   }
 `;
+
+export const Row = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 1rem;
+  align-items: center;
+`;
+
+export const Column = styled.div`
+  flex: 1 1 100%;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex: 1 1 45%;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    color: #404040;
+  }
+
+  input, 
+  select {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+`;
+
+export const FinalValue = styled.span`
+  font-size: 3rem;
+  font-weight: 600; 
+  color: #168590;
+  `;
+
+  export const Result = styled.div`
+    height: auto;
+    text-align: center;
+  `;
+
+  export const Cifrao = styled.span`
+    font-size: 1.4rem;
+    margin-right: 10px;
+  `;
+
+  export const Subtitle = styled.span`
+    color: #168590;
+    font-weight: bold;
+    font-size: 1.3rem;
+  `;
+
+  export const BoldText = styled.span`
+    font-weight: bold;
+    color: #168590;
+  `;
+
+  export const Logo = styled.img`
+    width: 120px;
+    height: auto;
+  `;
