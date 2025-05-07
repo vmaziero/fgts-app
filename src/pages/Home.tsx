@@ -11,7 +11,7 @@ import {
 
 function Home() {
   return (
-    <div style={{ padding: '2rem' }}>
+    <div>
       <StructureBox>
         <Logo src={logo} alt='Smile Co.' />
         <CopyRow>

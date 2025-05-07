@@ -23,6 +23,10 @@ export const CopyRow = styled.div`
   margin-bottom: 1rem;
   color: #fff;
   align-items: center;
+
+  @media (max-width: 470px) {
+    gap: 0;
+  }
 `;
 
 export const CopyColumn1 = styled.div`

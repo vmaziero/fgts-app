@@ -22,6 +22,7 @@ export const FormGroup = styled.div`
   label {
     font-weight: bold;
     color: #404040;
+    line-height: 2rem;
   }
 
   input, 

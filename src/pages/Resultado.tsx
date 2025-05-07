@@ -23,7 +23,7 @@ function Resultado() {
   const valorFormatado = formatCurrency(calculoFgts.saque.toFixed(2)).formatted.replace(/^R\$\s?/, '');
   
     return (
-      <div style={{ padding: '2rem' }}>
+      <div>
         <StructureBox>
           <Logo src={logo} alt='Smile Co.' />
           <CopyRow>
