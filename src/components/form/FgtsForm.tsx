@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { calcularSaqueAniversario } from '../../utils/fgts';
 import { useCalculoFgts } from '../../context/CalculoFgtsContext';
 import { useMask } from "../../hooks/useMask";
-import { formatCurrency } from "../../utils/formatters";
+import { formatCurrency, formatPhone } from "../../utils/formatters";
 import { validaTelefone } from '../../services/validaTelefone';
 import {
   Form,
@@ -18,8 +18,13 @@ function FGTSForm() {
   const { setCalculoFgts } = useCalculoFgts(); 
 
   const [nome, setNome] = useState('');
-  const [telefone, setTelefone] = useState('');
   const [mes, setMes] = useState('');
+
+  const {
+    value: telefone,
+    raw: telefoneRaw,
+    onChange: setTelefone
+  } = useMask(formatPhone);
 
   const { 
     value:currency, 
@@ -49,7 +54,7 @@ function FGTSForm() {
 
     const currencyNumber = parseFloat(currencyRaw.replace(/(\d)(\d{2})$/, "$1.$2"));
 
-    const internationalNumber = "+55" + telefone.replace(/\D/g, '');
+    const internationalNumber = "+55" + telefoneRaw;
 
     const numeroValido = await validaTelefone(internationalNumber);
     if(!numeroValido) {
@@ -88,7 +93,7 @@ function FGTSForm() {
           <input 
             type="tel" 
             value={telefone} 
-            onChange={(e) => setTelefone(e.target.value)} 
+            onChange={setTelefone} 
             placeholder="ex.: (21) 98765-9087"
             required />
         </FormGroup>

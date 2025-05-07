@@ -1,26 +1,31 @@
 import { useEffect } from "react";
 import { useCalculoFgts } from "../context/CalculoFgtsContext";
 import { useNavigate } from "react-router-dom";
+import { formatCurrency } from "../utils/formatters";
+import logo from '../assets/logo.png';
 import { Subtitle, Box, Cifrao, Column, CopyColumn1, CopyColumn2, CopyRow, FinalValue, Result, Row, StructureBox, BoldText, Logo } from "./styles";
 
 function Resultado() {
   const { calculoFgts } = useCalculoFgts();
   const navigate = useNavigate();
-
+  
+  
   useEffect(() => {
     if(!calculoFgts) {
       navigate('/');
     }
   }, [calculoFgts]); 
+  
+  if(!calculoFgts) {
+    return <p>Redirecionando...</p>
+  }
 
-    if(!calculoFgts) {
-      return <p>Redirecionando...</p>
-    }
-
+  const valorFormatado = formatCurrency(calculoFgts.saque.toFixed(2)).formatted.replace(/^R\$\s?/, '');
+  
     return (
       <div style={{ padding: '2rem' }}>
         <StructureBox>
-          <Logo />
+          <Logo src={logo} alt='Smile Co.' />
           <CopyRow>
             <CopyColumn1>
               <h1>Olá, {calculoFgts.nome}!</h1>
@@ -42,7 +47,7 @@ function Resultado() {
                         R$ 
                       </Cifrao>
                     <FinalValue>
-                      {calculoFgts.saque.toFixed(2)}
+                      {valorFormatado}
                     </FinalValue>
                   </span>
                 </Result>
