@@ -53,10 +53,10 @@ Este projeto utiliza uma API externa para validação de número de telefone. Pa
 cp .env.exemplo .env
 ```
 
-4. No arquivo .env, insira sua chave:
+4. No arquivo .env, insira sua chave. Ela deve estar entre aspas simples, como no exemplo a seguir:
 
 ```bash
-VITE_API_KEY=insira_sua_api_key_aqui
+VITE_API_KEY='insira_sua_api_key_aqui'
 ```
 
 
