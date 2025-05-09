@@ -1,54 +1,59 @@
-# React + TypeScript + Vite
+# 💸 Simulador Web de Saque-Aniversário do FGTS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto web desenvolvido em **React com Vite**, usando **TypeScript** e **Styled Components**, que permite simular o valor disponível para **saque-aniversário do FGTS** com base no saldo informado pelo trabalhador.
 
-Currently, two official plugins are available:
+Além da simulação, o sistema realiza uma **validação de telefone** por meio da API externa [Phone Number Validation and Verification API](https://rapidapi.com/). O objetivo é garantir que o número informado é válido antes de prosseguir com a simulação.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📌 Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Simulação do valor disponível para saque do FGTS conforme as faixas oficiais.
+- Validação do número de telefone via API externa.
+- Formulário com campos obrigatórios e máscaras para telefone e moeda em BRL (R$ ).
+- Página de resultado com os dados da simulação.
+- Testes automatizados em jest para validação da renderização dos campos do formulário e para validação das máscaras aplicadas.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Styled Components](https://styled-components.com/)
+- [React Router](https://reactrouter.com/)
+- API de verificação de telefone ([Phone Number Validation and Verification API](https://www.abstractapi.com/api/phone-validation-api))
+
+---
+
+## 🚀 Como rodar o projeto localmente
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/vmaziero/fgts-app.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Instale as dependências do projeto 
+```bash
+cd fgts-app
+npm install
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 3. Rode o projeto localmente
+```bash
+npm run start
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 4. Abra o localhost
+O terminal irá retornar a porta onde o projeto foi aberto. Pressione "Ctrl" e clique no link.
+Deverá ser algo como 'http://localhost:4173/'
+
+
+## 🧪 Como rodar os testes
+
+### 1. Execute os testes automatizados
+```bash
+npm run test
 ```
