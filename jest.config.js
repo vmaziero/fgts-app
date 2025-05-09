@@ -1,8 +1,8 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
+export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
@@ -12,4 +12,5 @@ module.exports = {
       tsconfig: './tsconfig.json',
     },
   },
+  setupFilesAfterEnv: ['./setupTests.ts'],
 };

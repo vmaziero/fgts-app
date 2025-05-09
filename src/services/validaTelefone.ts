@@ -1,5 +1,8 @@
+import { getApiKey } from '../env';
+
+
 export async function validaTelefone(telefone: string): Promise<boolean> {
-    const apiKey = import.meta.env.VITE_API_KEY;
+    const apiKey = getApiKey();
     const url = `https://phonevalidation.abstractapi.com/v1/?api_key=${apiKey}&phone=${telefone}&country_code=BR`;
 
     console.log(apiKey);

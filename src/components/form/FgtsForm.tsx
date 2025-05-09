@@ -27,7 +27,7 @@ function FGTSForm() {
   } = useMask(formatPhone);
 
   const { 
-    value:currency, 
+    value: currency, 
     raw: currencyRaw, 
     onChange: setCurrency 
   } = useMask(formatCurrency);
@@ -56,10 +56,11 @@ function FGTSForm() {
 
     const internationalNumber = "+55" + telefoneRaw;
 
+    // Valida o telefone antes de continuar com o submit
     const numeroValido = await validaTelefone(internationalNumber);
-    if(!numeroValido) {
+    if (!numeroValido) {
       alert('Telefone inválido.');
-      return;
+      return; // Impede o submit caso o telefone seja inválido
     }
 
     const saque = calcularSaqueAniversario(currencyNumber);
@@ -79,8 +80,9 @@ function FGTSForm() {
     <Form onSubmit={handleSubmit}>
       <Row>
         <FormGroup>
-          <label>Qual seu nome?</label><br />
+          <label htmlFor="nome">Qual seu nome?</label><br />
           <input 
+            id="nome"
             type="text" 
             value={nome} 
             onChange={(e) => setNome(e.target.value)} 
@@ -89,8 +91,9 @@ function FGTSForm() {
         </FormGroup>
 
         <FormGroup>
-          <label>Qual seu telefone?</label><br />
+          <label htmlFor="telefone">Qual seu telefone?</label><br />
           <input 
+            id="telefone"
             type="tel" 
             value={telefone} 
             onChange={setTelefone} 
@@ -101,8 +104,9 @@ function FGTSForm() {
 
       <Row>
         <FormGroup>
-          <label>Qual seu saldo?</label><br />
+          <label htmlFor="saldo">Qual seu saldo?</label><br />
           <input
+            id="saldo"
             type="text"
             value={currency}
             onChange={setCurrency}
@@ -111,8 +115,8 @@ function FGTSForm() {
         </FormGroup>
 
         <FormGroup>
-          <label>Qual seu mês de aniversário?</label><br />
-          <select value={mes} onChange={(e) => setMes(e.target.value)} required>
+          <label htmlFor="mes">Qual seu mês de aniversário?</label><br />
+          <select id="mes" value={mes} onChange={(e) => setMes(e.target.value)} required>
             <option value="">Selecione</option>
             {meses}
           </select>
