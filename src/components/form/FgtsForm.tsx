@@ -56,11 +56,10 @@ function FGTSForm() {
 
     const internationalNumber = "+55" + telefoneRaw;
 
-    // Valida o telefone antes de continuar com o submit
     const numeroValido = await validaTelefone(internationalNumber);
     if (!numeroValido) {
       alert('Telefone inválido.');
-      return; // Impede o submit caso o telefone seja inválido
+      return; 
     }
 
     const saque = calcularSaqueAniversario(currencyNumber);

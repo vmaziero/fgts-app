@@ -22,6 +22,11 @@ export const formatCurrency = (value: string): { formatted: string; raw: string 
   
 export const formatPhone = (value: string): { formatted: string; raw: string } => {
   const raw = value.replace(/\D/g, "");
+
+  if (!raw) {
+    return { formatted: "", raw: "" };
+  }
+
   let formatted = raw;
 
   if (raw.length <= 10) {
