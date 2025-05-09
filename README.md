@@ -41,12 +41,32 @@ cd fgts-app
 npm install
 ```
 
-### 3. Rode o projeto localmente
+### 3. Configure sua API Key
+
+Este projeto utiliza uma API externa para validação de número de telefone. Para utilizá-la, você precisa configurar sua própria chave de API:
+
+1. Crie uma conta em Abstract API - Phone Validation (https://www.abstractapi.com/api/phone-validation-api)
+2. Gere a sua API_KEY
+3. Copie o arquivo .env.exemplo e crie um novo arquivo .env:
+
+```bash
+cp .env.exemplo .env
+```
+
+4. No arquivo .env, insira sua chave:
+
+```bash
+VITE_API_KEY=insira_sua_api_key_aqui
+```
+
+
+
+### 4. Rode o projeto localmente
 ```bash
 npm run start
 ```
 
-### 4. Abra o localhost
+### 5. Abra o localhost
 O terminal irá retornar a porta onde o projeto foi aberto. Pressione "Ctrl" e clique no link.
 Deverá ser algo como 'http://localhost:4173/'
 
